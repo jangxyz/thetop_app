@@ -30,6 +30,7 @@ function fetchListPage() {
 console.log("testing...");
 function TEST() {
     var homeUrl = getInnerHomeUrl();
+    document.domain = 'cafe986.daum.net';
     $.get(homeUrl);
 };
 TEST();
