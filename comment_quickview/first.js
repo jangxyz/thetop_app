@@ -1,11 +1,15 @@
 
-1. --(load jQuery)--
+/*
+0. --(load jQuery)--
 daum already has jQuery
 
+1. fetch list page data
 
 
+get list url from representative home url
 
-# extract comment view page 
+
+get extract comment view page 
 {
     representative url: 'http://cafe.daum.net/loveclimb',
     inner home url    : 'http://cafe986.daum.net/_c21_/home?grpid=ccJT',
@@ -13,6 +17,23 @@ daum already has jQuery
     article url       : 'http://cafe.daum.net/loveclimb/_album/4699',
     comment view url  : 'http://cafe986.daum.net/_c21_/shortcomment_read?grpid=ccJT&fldid=_album&dataid=4699',
 }
+
+*/
+
+
+
+function fetchListPage() {
+    var homeUrl = getInnerHomeUrl();
+    $.get(homUrl);
+}
+
+
+console.log("testing...");
+function TEST() {
+    var homeUrl = getInnerHomeUrl();
+    $.get(homUrl);
+}();
+console.log("test done.");
 
 
 /* 
@@ -28,11 +49,11 @@ function getInnerHomeUrl() {
  * http://cafe.daum.net/loveclimb/_album/4699 => http://cafe986.daum.net/_c21_/shortcomment_read?grpid=ccJT&fldid=_album&dataid=4699
  */
 function getCommentViewUrl(articleUrl) {
-    var homeUrl = getInnerHomeUrl();        // http://cafe986.daum.net/_c21_/home?grpid=ccJT
-    var subdomain = getSubdomain(homeUrl);  // cafe986
-    var grpid = getGroupid(homeUrl);        // ccJT
-    var fldid = getFldid(articleUrl);       // _album
-    var dataid = getDataid(articleUrl);     // 4699
+    var homeUrl   = getInnerHomeUrl();        // http://cafe986.daum.net/_c21_/home?grpid=ccJT
+    var subdomain = getSubdomain(homeUrl);    // cafe986
+    var grpid     = getGroupid(homeUrl);      // ccJT
+    var fldid     = getFldid(articleUrl);     // _album
+    var dataid    = getDataid(articleUrl);    // 4699
 
     return 'http://' + subdomain + '.daum.net/_c21_/shortcomment_read?grpid=' + grpid + '&fldid=' + fldid + '&dataid=' + dataid;
 }
@@ -61,12 +82,10 @@ function getGroupid(url) {
  * http://cafe.daum.net/loveclimb/_album/4699 => _album
  */
 function getFldid(articleUrl) {
-    // path: loveclimb/_album/4699
     return getPathFromUrl(articleUrl).split('/')[1];
 }
 
 function getDataid(articleUrl) {
-    // path: loveclimb/_album/4699
     return getPathFromUrl(articleUrl).split('/')[2];
 }
 
