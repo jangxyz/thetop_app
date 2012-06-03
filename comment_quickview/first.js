@@ -31,8 +31,9 @@ function fetchListPage() {
 console.log("testing...");
 function TEST() {
     var homeUrl = getInnerHomeUrl();
-    $.get(homUrl);
-}();
+    $.get(homeUrl);
+};
+TEST();
 console.log("test done.");
 
 
