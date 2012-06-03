@@ -1,4 +1,3 @@
-
 /*
 0. --(load jQuery)--
 daum already has jQuery
@@ -32,7 +31,8 @@ console.log("testing...");
 function TEST() {
     var homeUrl = getInnerHomeUrl();
     $.get(homUrl);
-}();
+};
+TEST();
 console.log("test done.");
 
 
